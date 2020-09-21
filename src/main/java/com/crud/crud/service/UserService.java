@@ -6,6 +6,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -27,6 +30,17 @@ public class UserService {
         /*log.debug("Request to get all User");*/
         return userRepository.findAll(pageable);
     }
+
+    public void delete(Long id){
+        userRepository.deleteById(id);
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<User> findById(Long id){
+        return userRepository.findById(id);
+
+    }
+
 
 
 
